@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp">
+    <input type="file" class="file" ng-model="fileId" multiple/>
+    <h2>{{fileId?'当前文件Id:'+fileId:'未上传文件'}}</h2>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/fileinput.min.js"></script>
+    <script src="Scripts/locales/zh.js"></script>
+    <script src="Scripts/angular-fileinput.js"></script>
+    <script>
+        angular.module('myApp', ['bs.fileinput']);
+    </script>
+</body>
+</html>
