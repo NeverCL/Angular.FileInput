@@ -4,25 +4,45 @@
     } else factory();
 }(window, function () {
     'use strict';
-    angular.module('bs.fileinput', []).directive('file', function () {
-        return {
-            require: 'ngModel',
-            restrict: 'C',
-            link: fileLink
-        };
+    angular.module('bs.fileinput', [])
+        .constant('fileCfg', {
+            uploadUrl: 'UploadFile.ashx',
+            language: 'zh'
+        })
+        .directive('file', ['fileCfg', function (cfg) {
+            return {
+                require: 'ngModel',
+                scope: {
+                    allowFileExts: '=',
+                    allowFileTypes: '='
+                },
+                restrict: 'C',
+                link: fileLink
+            };
 
-        function fileLink(scope, ele, attr, ngModel) {
-            if (attr.multiple) {
-                $(ele).fileinput({ uploadUrl: 'UploadFile.ashx', language: 'zh', uploadAsync: false });
-                $(ele).on('filebatchuploadsuccess', function (evt, data) {
-                    var rst = data.response; ngModel.$setViewValue(rst);
-                });
-            } else {
-                $(ele).fileinput({ uploadUrl: 'UploadFile.ashx', language: 'zh' });
-                $(ele).on('fileuploaded', function (evt, data) {
-                    var rst = data.response; ngModel.$setViewValue(rst[0]);
-                });
+            function fileLink(scope, ele, attr, ngModel) {
+                if (!ngModel) return;
+
+                var opt = cfg;
+
+                if (scope.allowFileExts instanceof Array)
+                    opt.allowedFileExtensions = scope.allowFileExts;
+
+                if (scope.allowFileTypes instanceof Array)
+                    opt.allowedFileTypes = scope.allowFileTypes;
+
+                if (attr.multiple) {
+                    opt.uploadAsync = false;
+                    $(ele).fileinput(opt);
+                    $(ele).on('filebatchuploadsuccess', function (evt, data) {
+                        ngModel.$setViewValue(data.response);
+                    });
+                } else {
+                    $(ele).fileinput(opt);
+                    $(ele).on('fileuploaded', function (evt, data) {
+                        ngModel.$setViewValue(data.response[0]);
+                    });
+                }
             }
-        }
-    });
+        }]);
 }));
