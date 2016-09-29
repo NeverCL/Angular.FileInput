@@ -11,7 +11,7 @@
         })
         .directive('file', ['fileCfg', function (cfg) {
             return {
-                require: 'ngModel',
+                require: '?ngModel',
                 scope: {
                     allowFileExts: '=',
                     allowFileTypes: '='
