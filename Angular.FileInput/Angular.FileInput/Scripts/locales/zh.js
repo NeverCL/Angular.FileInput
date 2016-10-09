@@ -11,7 +11,7 @@
  */
 (function (root, factory) {
     if (typeof root.define === 'function' && root.define.amd) {
-        root.define(['jQuery'], factory);
+        root.define(['jquery'], factory);
     } else factory(jQuery);
 }(window, function ($) {
     "use strict";
