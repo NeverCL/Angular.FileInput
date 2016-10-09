@@ -1,4 +1,12 @@
-﻿(function (root, factory) {
+﻿/*!
+ * angular-fileinput v1.0.1
+ *
+ * Author: Never、C
+ * Copyright: 2016, Never、C, neverc.cn
+ *
+ * https://github.com/NeverCL/Angular.FileInput
+ */
+(function (root, factory) {
     if (typeof root.define === 'function' && root.define.amd) {
         root.define(['angular', 'fileinput'], factory);
     } else factory();

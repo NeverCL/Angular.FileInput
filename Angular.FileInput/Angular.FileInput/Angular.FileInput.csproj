@@ -74,6 +74,7 @@
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap-fileinput\sass\fileinput.scss" />
+    <Content Include="Scripts\angular-fileinput.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
