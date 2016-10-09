@@ -27,7 +27,7 @@
 }(function ($) {
     "use strict";
 
-    $.fn.fileinputLocales = {};
+    $.fn.fileinputLocales = $.fn.fileinputLocales || {};
     $.fn.fileinputThemes = {};
 
     var NAMESPACE, MODAL_ID, STYLE_SETTING, OBJECT_PARAMS, DEFAULT_PREVIEW, objUrl, compare, isIE, handler,
@@ -240,13 +240,13 @@
         out: function (id) {
             var html = '', data = previewCache.data[id], caption, len = previewCache.count(id, true);
             if (len === 0) {
-                return {content: '', caption: ''};
+                return { content: '', caption: '' };
             }
             for (var i = 0; i < len; i++) {
                 html += previewCache.get(id, i);
             }
             caption = data.msg(previewCache.count(id));
-            return {content: '<div class="file-initial-thumbs">' + html + '</div>', caption: caption};
+            return { content: '<div class="file-initial-thumbs">' + html + '</div>', caption: caption };
         },
         footer: function (id, i, isDisabled, size) {
             var data = previewCache.data[id];
@@ -445,26 +445,26 @@
     };
     defaultPreviewTypes = ['image', 'html', 'text', 'video', 'audio', 'flash', 'pdf', 'object'];
     defaultPreviewSettings = {
-        image: {width: "auto", height: "160px"},
-        html: {width: "213px", height: "160px"},
-        text: {width: "213px", height: "160px"},
-        video: {width: "213px", height: "160px"},
-        audio: {width: "213px", height: "80px"},
-        flash: {width: "213px", height: "160px"},
-        object: {width: "160px", height: "160px"},
-        pdf: {width: "160px", height: "160px"},
-        other: {width: "160px", height: "160px"}
+        image: { width: "auto", height: "160px" },
+        html: { width: "213px", height: "160px" },
+        text: { width: "213px", height: "160px" },
+        video: { width: "213px", height: "160px" },
+        audio: { width: "213px", height: "80px" },
+        flash: { width: "213px", height: "160px" },
+        object: { width: "160px", height: "160px" },
+        pdf: { width: "160px", height: "160px" },
+        other: { width: "160px", height: "160px" }
     };
     defaultPreviewZoomSettings = {
-        image: {width: "100%", height: "100%"},
-        html: {width: "100%", height: "100%", 'min-height': "480px"},
-        text: {width: "100%", height: "100%", 'min-height': "480px"},
-        video: {width: "auto", height: "100%", 'max-width': "100%"},
-        audio: {width: "100%", height: "30px"},
-        flash: {width: "auto", height: "480px"},
-        object: {width: "auto", height: "100%", 'min-height': "480px"},
-        pdf: {width: "100%", height: "100%", 'min-height': "480px"},
-        other: {width: "auto", height: "100%", 'min-height': "480px"}
+        image: { width: "100%", height: "100%" },
+        html: { width: "100%", height: "100%", 'min-height': "480px" },
+        text: { width: "100%", height: "100%", 'min-height': "480px" },
+        video: { width: "auto", height: "100%", 'max-width': "100%" },
+        audio: { width: "100%", height: "30px" },
+        flash: { width: "auto", height: "480px" },
+        object: { width: "auto", height: "100%", 'min-height': "480px" },
+        pdf: { width: "100%", height: "100%", 'min-height': "480px" },
+        other: { width: "auto", height: "100%", 'min-height': "480px" }
     };
     defaultFileTypeSettings = {
         image: function (vType, vName) {
@@ -891,7 +891,7 @@
                 case 'filecustomerror':
                 case 'filesuccessremove':
                     break;
-                // receive data response via `filecustomerror` event`
+                    // receive data response via `filecustomerror` event`
                 default:
                     self.ajaxAborted = e.result;
                     break;
@@ -1333,7 +1333,7 @@
                 self._setZoomContent($targFrame, true);
             }
             self._initZoomButtons();
-            self._raise('filezoom' + dir, {'previewId': previewId, modal: self.$modal});
+            self._raise('filezoom' + dir, { 'previewId': previewId, modal: self.$modal });
         },
         _initZoomButton: function () {
             var self = this;
@@ -1367,12 +1367,12 @@
                 if (typeof extraData === "function") {
                     extraData = extraData();
                 }
-                params = {id: $el.attr('id'), key: vKey, extra: extraData};
+                params = { id: $el.attr('id'), key: vKey, extra: extraData };
                 settings = $.extend(true, {}, {
                     url: vUrl,
                     type: 'POST',
                     dataType: 'json',
-                    data: $.extend(true, {}, {key: vKey}, extraData),
+                    data: $.extend(true, {}, { key: vKey }, extraData),
                     beforeSend: function (jqXHR) {
                         self.ajaxAborted = false;
                         self._raise('filepredelete', [vKey, jqXHR, extraData]);
@@ -1464,7 +1464,7 @@
         },
         _resetUpload: function () {
             var self = this;
-            self.uploadCache = {content: [], config: [], tags: [], append: true};
+            self.uploadCache = { content: [], config: [], tags: [], append: true };
             self.uploadCount = 0;
             self.uploadStatus = {};
             self.uploadLog = [];
@@ -1721,7 +1721,7 @@
             var self = this, total = self.getFileStack().length, formdata = new FormData(), outData,
                 previewId = self.previewInitId + "-" + i, $thumb, chkComplete, $btnUpload, $btnDelete,
                 hasPostData = self.filestack.length > 0 || !$.isEmptyObject(self.uploadExtraData),
-                fnBefore, fnSuccess, fnComplete, fnError, updateUploadLog, params = {id: previewId, index: i};
+                fnBefore, fnSuccess, fnComplete, fnError, updateUploadLog, params = { id: previewId, index: i };
             self.formdata = formdata;
             if (self.showPreview) {
                 $thumb = $('#' + previewId + ':not(.file-preview-initial)');
@@ -1792,7 +1792,7 @@
                             $btnUpload.hide();
                             self._initUploadSuccess(data, $thumb, allFiles);
                         }
-                        self._raise('fileuploaded', [outData, $thumb.attr('id'), i]);
+                        self._raise('fileuploaded', [outData, $thumb ? $thumb.attr('id') : '', i]);
                         if (!allFiles) {
                             self.updateStack(i, undefined);
                         } else {
@@ -2146,8 +2146,8 @@
                 maxPreviewSize = self.maxFilePreviewSize && parseFloat(self.maxFilePreviewSize),
                 canPreview = $preview.length && (!maxPreviewSize || isNaN(maxPreviewSize)),
                 throwError = function (msg, file, previewId, index) {
-                    var p1 = $.extend(true, {}, self._getOutData({}, {}, files), {id: previewId, index: index}),
-                        p2 = {id: previewId, index: index, file: file, files: files};
+                    var p1 = $.extend(true, {}, self._getOutData({}, {}, files), { id: previewId, index: index }),
+                        p2 = { id: previewId, index: index, file: file, files: files };
                     self._previewDefault(file, previewId, true);
                     if (self.isUploadable) {
                         self.addToStack(undefined);
@@ -2453,7 +2453,7 @@
                     $img.css('width', '100%');
                     $thumb.css('width', '97%');
                 }
-                params = {ind: i, id: previewId};
+                params = { ind: i, id: previewId };
                 self._checkDimensions(i, 'Small', $img, $thumb, fname, 'Width', params);
                 self._checkDimensions(i, 'Small', $img, $thumb, fname, 'Height', params);
                 if (!self.resizeImage) {
@@ -2461,7 +2461,7 @@
                     self._checkDimensions(i, 'Large', $img, $thumb, fname, 'Height', params);
                 }
                 self._raise('fileimageloaded', [previewId]);
-                self.loadedImages.push({ind: i, img: $img, thumb: $thumb, pid: previewId, typ: ftype});
+                self.loadedImages.push({ ind: i, img: $img, thumb: $thumb, pid: previewId, typ: ftype });
                 self._validateAllImages();
                 objUrl.revokeObjectURL($img.attr('src'));
             });
@@ -2482,7 +2482,7 @@
                 $thumb = config.thumb;
                 pid = config.pid;
                 ind = config.ind;
-                params = {id: pid, 'index': ind};
+                params = { id: pid, 'index': ind };
                 if (!self._getResizedImage($img[0], config.typ, pid, ind)) {
                     errFunc(self.msgImageResizeError, params, 'fileimageresizeerror');
                     self._setPreviewError($thumb, ind);
@@ -2572,7 +2572,7 @@
         },
         _createContainer: function () {
             var self = this, $container = $(document.createElement("div"))
-                .attr({"class": 'file-input file-input-new'})
+                .attr({ "class": 'file-input file-input-new' })
                 .html(self._renderMain());
             self.$element.before($container);
             self._initBrowse($container);
@@ -2738,8 +2738,8 @@
                 files = isDragDrop ? e.originalEvent.dataTransfer.files : $el.get(0).files, ctr = self.filestack.length,
                 isSingleUpload = isEmpty($el.attr('multiple')), flagSingle = (isSingleUpload && ctr > 0), folders = 0,
                 throwError = function (mesg, file, previewId, index) {
-                    var p1 = $.extend(true, {}, self._getOutData({}, {}, files), {id: previewId, index: index}),
-                        p2 = {id: previewId, index: index, file: file, files: files};
+                    var p1 = $.extend(true, {}, self._getOutData({}, {}, files), { id: previewId, index: index }),
+                        p2 = { id: previewId, index: index, file: file, files: files };
                     return self.isUploadable ? self._showUploadError(mesg, p1) : self._showError(mesg, p2);
                 };
             self.reader = null;
@@ -2762,7 +2762,7 @@
             } else {
                 if (e.target.files === undefined) {
                     tfiles = e.target && e.target.value ? [
-                        {name: e.target.value.replace(/^.+\\/, '')}
+                        { name: e.target.value.replace(/^.+\\/, '') }
                     ] : [];
                 } else {
                     tfiles = e.target.files;
@@ -3034,7 +3034,7 @@
                 outData = self._getOutData();
                 self._raise('filebatchpreupload', [outData]);
                 self.fileBatchCompleted = false;
-                self.uploadCache = {content: [], config: [], tags: [], append: true};
+                self.uploadCache = { content: [], config: [], tags: [], append: true };
                 self.uploadAsyncCount = self.getFileStack().length;
                 for (i = 0; i < len; i++) {
                     self.uploadCache.content[i] = null;
@@ -3079,15 +3079,15 @@
         this.each(function () {
             var self = $(this), data = self.data('fileinput'), options = typeof option === 'object' && option,
                 theme = options.theme || self.data('theme'), l = {}, t = {},
-                lang = options.language || self.data('language') || 'en', opts;
+                lang = options.language || self.data('language') || 'zh', opts;
             if (!data) {
                 if (theme) {
                     t = $.fn.fileinputThemes[theme] || {};
                 }
-                if (lang !== 'en' && !isEmpty($.fn.fileinputLocales[lang])) {
+                if (lang !== 'zh' && !isEmpty($.fn.fileinputLocales[lang])) {
                     l = $.fn.fileinputLocales[lang] || {};
                 }
-                opts = $.extend(true, {}, $.fn.fileinput.defaults, t, $.fn.fileinputLocales.en, l, options,
+                opts = $.extend(true, {}, $.fn.fileinput.defaults, t, $.fn.fileinputLocales.zh, l, options,
                     self.data());
                 data = new FileInput(this, opts);
                 self.data('fileinput', data);
@@ -3108,10 +3108,10 @@
     };
 
     $.fn.fileinput.defaults = {
-        language: 'en',
+        language: 'zh',
         showCaption: true,
         showBrowse: true,
-        showPreview: true,
+        showPreview: false,
         showRemove: true,
         showUpload: true,
         showCancel: true,
@@ -3221,55 +3221,6 @@
         ajaxSettings: {},
         ajaxDeleteSettings: {},
         showAjaxErrorDetails: true
-    };
-
-    $.fn.fileinputLocales.en = {
-        fileSingle: 'file',
-        filePlural: 'files',
-        browseLabel: 'Browse &hellip;',
-        removeLabel: 'Remove',
-        removeTitle: 'Clear selected files',
-        cancelLabel: 'Cancel',
-        cancelTitle: 'Abort ongoing upload',
-        uploadLabel: 'Upload',
-        uploadTitle: 'Upload selected files',
-        msgNo: 'No',
-        msgNoFilesSelected: 'No files selected',
-        msgCancelled: 'Cancelled',
-        msgZoomModalHeading: 'Detailed Preview',
-        msgSizeTooLarge: 'File "{name}" (<b>{size} KB</b>) exceeds maximum allowed upload size of <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'You must select at least <b>{n}</b> {files} to upload.',
-        msgFilesTooMany: 'Number of files selected for upload <b>({n})</b> exceeds maximum allowed limit of <b>{m}</b>.',
-        msgFileNotFound: 'File "{name}" not found!',
-        msgFileSecured: 'Security restrictions prevent reading the file "{name}".',
-        msgFileNotReadable: 'File "{name}" is not readable.',
-        msgFilePreviewAborted: 'File preview aborted for "{name}".',
-        msgFilePreviewError: 'An error occurred while reading the file "{name}".',
-        msgInvalidFileType: 'Invalid type for file "{name}". Only "{types}" files are supported.',
-        msgInvalidFileExtension: 'Invalid extension for file "{name}". Only "{extensions}" files are supported.',
-        msgUploadAborted: 'The file upload was aborted',
-        msgUploadThreshold: 'Processing...',
-        msgValidationError: 'Validation Error',
-        msgLoading: 'Loading file {index} of {files} &hellip;',
-        msgProgress: 'Loading file {index} of {files} - {name} - {percent}% completed.',
-        msgSelected: '{n} {files} selected',
-        msgFoldersNotAllowed: 'Drag & drop files only! {n} folder(s) dropped were skipped.',
-        msgImageWidthSmall: 'Width of image file "{name}" must be at least {size} px.',
-        msgImageHeightSmall: 'Height of image file "{name}" must be at least {size} px.',
-        msgImageWidthLarge: 'Width of image file "{name}" cannot exceed {size} px.',
-        msgImageHeightLarge: 'Height of image file "{name}" cannot exceed {size} px.',
-        msgImageResizeError: 'Could not get the image dimensions to resize.',
-        msgImageResizeException: 'Error while resizing the image.<pre>{errors}</pre>',
-        dropZoneTitle: 'Drag & drop files here &hellip;',
-        dropZoneClickTitle: '<br>(or click to select {files})',
-        previewZoomButtonTitles: {
-            prev: 'View previous file',
-            next: 'View next file',
-            toggleheader: 'Toggle header',
-            fullscreen: 'Toggle full screen',
-            borderless: 'Toggle borderless mode',
-            close: 'Close detailed preview'
-        }
     };
 
     $.fn.fileinput.Constructor = FileInput;

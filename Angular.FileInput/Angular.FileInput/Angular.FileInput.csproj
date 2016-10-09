@@ -103,34 +103,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\locales\ar.js" />
-    <Content Include="Scripts\locales\bg.js" />
-    <Content Include="Scripts\locales\ca.js" />
-    <Content Include="Scripts\locales\cr.js" />
-    <Content Include="Scripts\locales\cz.js" />
-    <Content Include="Scripts\locales\da.js" />
-    <Content Include="Scripts\locales\de.js" />
-    <Content Include="Scripts\locales\el.js" />
-    <Content Include="Scripts\locales\es.js" />
-    <Content Include="Scripts\locales\fa.js" />
-    <Content Include="Scripts\locales\fi.js" />
-    <Content Include="Scripts\locales\fr.js" />
-    <Content Include="Scripts\locales\hu.js" />
-    <Content Include="Scripts\locales\id.js" />
-    <Content Include="Scripts\locales\it.js" />
-    <Content Include="Scripts\locales\ja.js" />
-    <Content Include="Scripts\locales\LANG.js" />
-    <Content Include="Scripts\locales\nl.js" />
-    <Content Include="Scripts\locales\pl.js" />
-    <Content Include="Scripts\locales\pt-BR.js" />
-    <Content Include="Scripts\locales\pt.js" />
-    <Content Include="Scripts\locales\ro.js" />
-    <Content Include="Scripts\locales\ru.js" />
-    <Content Include="Scripts\locales\sk.js" />
-    <Content Include="Scripts\locales\th.js" />
-    <Content Include="Scripts\locales\tr.js" />
-    <Content Include="Scripts\locales\uk.js" />
-    <Content Include="Scripts\locales\zh-TW.js" />
     <Content Include="Scripts\locales\zh.js" />
     <Content Include="Scripts\plugins\canvas-to-blob.js" />
     <Content Include="Scripts\plugins\canvas-to-blob.min.js" />

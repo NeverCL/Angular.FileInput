@@ -9,9 +9,13 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-(function ($) {
+(function (root, factory) {
+    if (typeof root.define === 'function' && root.define.amd) {
+        root.define(['jQuery'], factory);
+    } else factory(jQuery);
+}(window, function ($) {
     "use strict";
-
+    $.fn.fileinputLocales = $.fn.fileinputLocales || {};
     $.fn.fileinputLocales['zh'] = {
         fileSingle: '文件',
         filePlural: '多个文件',
@@ -70,4 +74,4 @@
             close: 'Close detailed preview'
         }
     };
-})(window.jQuery);
+}));
